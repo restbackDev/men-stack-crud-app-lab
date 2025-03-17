@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clothing App</title>
+</head>
+<body>
+  <h1>Welcome to the Clothing App</h1>
+  <h2>Collect your favorite Clothes</h2>
+  <nav>
+    <ul>
+      <li><a href="/">Back to Home</a></li>
+      <li><a href="/clothes/new">Add New Clothes</a></li>
+    </ul>
+  </nav>
+    <h3>All Clothes</h3>
+    <ul>
+      <% clothes.forEach(item => { %>
+      <li>
+        <a href="/clothes/<%= item._id %>"><%= item.name %></a>
+      </li>
+      <% }); %>
+    </ul>
+</body>
+</html>

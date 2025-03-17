@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clothing App</title>
+  </head>
+
+  <body>
+    <h1>Welcome to the Clothing App</h1>
+    <!-- navbar -->
+    <nav>
+      <ul>
+        <li><a href="/clothes">Back to Clothes</a></li>
+      </ul>
+    </nav>
+    <h3>Create new Clothes</h3>
+
+    <!-- form -->
+    <form action="/clothes" method="POST">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" />
+
+      <label for="description">Description</label>
+      <input type="text" name="description" id="description" />
+
+      <button type="submit">Add Clothes</button>
+      <button type="submit">Delete</button>
+    </form>
+  </body>
+</html>
