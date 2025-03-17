@@ -9,23 +9,19 @@
   <body>
     <h1>Welcome to the Clothing App</h1>
     <!-- navbar -->
+    <h2>Collect your favorite Clothes</h2>
     <nav>
       <ul>
+        <li><a href="/">Back to Home</a></li>
         <li><a href="/clothes">Back to Clothes</a></li>
       </ul>
-    </nav>
-    <h3>Create new Clothes</h3>
+      <h3>Name: <%= clothes.name %></h3>
+      <h4>Description: <%= clothes.description %></h4>
 
     <!-- form -->
-    <form action="/clothes" method="POST">
-      <label for="name">Name:</label>
-      <input type="text" name="name" id="name" />
-
-      <label for="description">Description</label>
-      <input type="text" name="description" id="description" />
-
-      <button type="submit">Add Clothes</button>
-      <button type="submit">Delete</button>
+    <form action="/clothes/<%= clothes._id %>?_method=DELETE" method="POST">
+      <button type="submit">Delete <%= clothes.name %></button>
     </form>
+    <p><a href="/clothes/<%= clothes._id %>/edit">Edit <%= clothes.name %></a></p>
   </body>
 </html>

@@ -22,6 +22,7 @@ mongoose.connection.on("error", (error) => {
 });
 
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method"));
 app.use(morgan("dev"));
 app.use(express.static("public"));
 
@@ -46,8 +47,31 @@ app.get("/clothes", async (req, res) => {
   res.render("clothes/index.ejs", {clothes: allClothes});
 });
 
+// used to show individual item 
+app.get("/clothes/:clothesId", async (req, res) => {  // this should be in the vey btm due to :fruitId
+  const foundClothes = await Clothes.findById(req.params.clothesId); // .findById checks the Id
+  res.render("clothes/show.ejs", { clothes: foundClothes });
+});
 
+//delete
+app.delete("/clothes/:clothesId", async (req, res) => {
+  await Clothes.findByIdAndDelete(req.params.clothesId);
+  res.redirect("/clothes");
+});
 
+// GET localhost:3000/fruits/:fruitId/edit
+app.get("/clothes/:clothesId/edit", async (req, res) => {
+  const foundClothes = await Clothes.findById(req.params.clothesId);
+  res.render("clothes/edit.ejs", {clothes: foundClothes});
+});
+
+//PUT Updating the edited item
+app.put("/clothes/:clothesId", async (req, res) => {
+  // Update the fruit in the database
+  await Clothes.findByIdAndUpdate(req.params.clothesId, req.body);
+  // Redirect to the fruit's show page to see the updates
+  res.redirect(`/clothes/${req.params.clothesId}`);
+});
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
